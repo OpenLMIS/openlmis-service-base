@@ -16,9 +16,12 @@ HOST=`echo ${DATABASE_URL} | sed -E 's/^.*\/{2}(.+):.*$/\1/'` # //<host>:
 PORT=`echo ${DATABASE_URL} | sed -E 's/^.*\:([0-9]+)\/.*$/\1/'` # :<port>/
 : "${PORT:?Port not parsed}"
 
+DB_NAME=`echo ${DATABASE_URL} | sed -E 's/^.*\/{1}(.+).*$/\1/'` # /<db_name>
+: "${DB_NAME:?Database name not parsed}"
+
 cmd="$@"
 
-until PGPASSWORD=$POSTGRES_PASSWORD psql -h "$HOST" -p "$PORT" -U "$POSTGRES_USER" -c '\q'; do
+until PGPASSWORD=$POSTGRES_PASSWORD psql -h "$HOST" -p "$PORT" -U "$POSTGRES_USER" -d "$DB_NAME" -c '\q'; do
   >&2 echo "Postgres is unavailable - sleeping"
   sleep 5
 done
