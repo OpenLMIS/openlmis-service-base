@@ -16,7 +16,7 @@ HOST=`echo ${DATABASE_URL} | sed -E 's/^.*\/{2}(.+):.*$/\1/'` # //<host>:
 PORT=`echo ${DATABASE_URL} | sed -E 's/^.*\:([0-9]+)\/.*$/\1/'` # :<port>/
 : "${PORT:?Port not parsed}"
 
-DB_NAME=`echo ${DATABASE_URL} | sed -E 's/^.*\/{1}(.+).*$/\1/'` # /<db_name>
+DB_NAME=`echo ${DATABASE_URL} | sed -E 's/^.*\/(.+)\?*$/\1/'` # /<db>?
 : "${DB_NAME:?Database name not parsed}"
 
 cmd="$@"
