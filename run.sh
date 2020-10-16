@@ -6,7 +6,7 @@ else
     echo "Warning: could not find consul directory"
 fi
 if [ -d "extensions" ]; then
-    java -cp service.jar -Dloader.path=extensions/ org.springframework.boot.loader.PropertiesLauncher
+    java $JAVA_OPTS -cp service.jar -Dloader.path=extensions/ org.springframework.boot.loader.PropertiesLauncher
 else
     java $JAVA_OPTS -jar service.jar
 fi
