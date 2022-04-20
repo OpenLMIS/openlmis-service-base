@@ -6,6 +6,7 @@ COPY wait-for-postgres.sh /wait-for-postgres.sh
 
 RUN chmod +x run.sh \
   && apk update \
+  && apk add bash \
   && apk add nodejs-current-npm \
   && apk add openjdk8 \
   && apk add postgresql-client \
