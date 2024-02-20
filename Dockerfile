@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM hotswapagent/hotswap-vm
 
 COPY package.json /package.json
 COPY run.sh /run.sh
@@ -8,7 +8,6 @@ RUN chmod +x run.sh \
   && apk update \
   && apk add bash \
   && apk add nodejs-current-npm \
-  && apk add openjdk8 \
   && apk add postgresql-client \
   && apk add postgresql \
   && npm install
