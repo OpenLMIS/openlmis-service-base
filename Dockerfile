@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.13
 
 COPY package.json /package.json
 COPY run.sh /run.sh
